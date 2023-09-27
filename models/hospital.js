@@ -2,7 +2,7 @@
 const {  DataTypes } = require("sequelize");
 const { sequelize } = require("../database");
 const { getHashPassword } = require("../utils/password");
-const patient=sequelize.define('patient',{
+const hospital=sequelize.define('hospital',{
     Id:{
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -11,11 +11,9 @@ const patient=sequelize.define('patient',{
       },
     firstName:{
         type:DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
     },
-    lastName:{
-        type:DataTypes.STRING,
-    },
+   
     email:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -32,14 +30,11 @@ const patient=sequelize.define('patient',{
         set(value){
             this.setDataValue('password',getHashPassword(value))
         }
-    },
-    gender:{
-        type:DataTypes.ENUM("male","female","others"),
-        allowNull:false,
+        
     },
     role:{
-        type:DataTypes.ENUM("admin","patient","hospital"),
-        allowNull:false,
+        type:DataTypes.STRING,
+        defaultValue:"hospital"
     },
     enabled:{
         type:DataTypes.BOOLEAN,
@@ -54,4 +49,4 @@ const patient=sequelize.define('patient',{
     }
 })
 
-module.exports={patient}
+module.exports={hospital}

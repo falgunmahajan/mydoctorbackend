@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const { route } = require("./routes/route");
 const { sequelize } = require("./database");
-const { patient } = require("./models/patient");
+const { user } = require("./models/users");
+const { hospital } = require("./models/hospital");
 const app = express();
 // mongoose.connect(process.env.DbUrl).then(()=>console.log("Database Successfully connected"))
 
@@ -15,9 +15,13 @@ app.listen(process.env.PORT, () => {
 sequelize.authenticate().then(() => {
   console.log("Database Successfully connected");
 });
-patient.sync().then(()=>{
-    console.log("Patient model is created")
+user.sync().then(()=>{
+    console.log("User model is created")
 })
+hospital.sync().then(()=>{
+  console.log("Hospital model is created")
+})
+
 
 app.use(cors())
 app.use(express.json())

@@ -1,18 +1,25 @@
-const { Op } = require("sequelize");
-const {  patient } = require("../models/patient");
+
+
+const { hospital } = require("../models/hospital");
+const { user } = require("../models/users");
 
 const isUnique=async(req,res)=>{
+   
+    const role=req.params.role
+    console.log(role)
     const email=req.query.email;
+    const model=role==="hospital"?hospital:user
+    console.log(model)
     const contactNumber=req.query.contactNumber
     console.log(email,contactNumber)
     let resp;
     if(email){
-        resp=await patient.findOne({where:{
+        resp=await model.findOne({where:{
             email:email
         }})
     }
     if(contactNumber){
-         resp=await patient.findOne({where:{
+         resp=await model.findOne({where:{
             contactNumber:contactNumber
         }})
     }
