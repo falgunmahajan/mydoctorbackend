@@ -5,6 +5,9 @@ const { isUnique } = require("../controllers/accounts");
 const { registerHospitals, getHospital } = require("../controllers/hospital");
 const { authentication } = require("../controllers/authentication");
 const route=express.Router();
+route.get("/",(req,res)=>{
+    res.send({msg:"hello"})
+})
 route.post("/patients",registerPatients)
 route.post("/doctors",registerDoctors);
 route.post("/hospital",registerHospitals);

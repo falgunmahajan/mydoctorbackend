@@ -8,7 +8,7 @@ const { hospital } = require("./models/hospital");
 const app = express();
 // mongoose.connect(process.env.DbUrl).then(()=>console.log("Database Successfully connected"))
 
-app.listen(process.env.PORT, () => {
+const server=app.listen(process.env.PORT, () => {
   console.log(`The app is listening at ${process.env.PORT}`);
 });
 
@@ -26,3 +26,4 @@ hospital.sync().then(()=>{
 app.use(cors())
 app.use(express.json())
 app.use("", route)
+module.exports={app,server};

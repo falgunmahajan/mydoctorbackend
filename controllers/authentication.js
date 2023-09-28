@@ -1,6 +1,7 @@
 const { hospital } = require("../models/hospital");
 const { user } = require("../models/users");
-const jwt = require("jsonwebtoken");
+const { getToken } = require("../utils/jwt");
+
 const { matchedPassword } = require("../utils/password");
 
 const authentication = async (req, res) => {
@@ -20,13 +21,7 @@ const authentication = async (req, res) => {
     }));
     console.log(resp)
   if (resp && matchedPassword(req.body.password,resp.password)) {
-    const token = jwt.sign(
-      {
-        Id: resp.Id,
-        email: resp.email,
-      },
-      process.env.SECRETKEY, { expiresIn: '30d' }
-    );
+    const token = getToken(resp)
     res.status(201).json({ accessToken: token, user: resp });
   } else {
     res
