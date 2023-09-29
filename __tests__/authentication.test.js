@@ -33,6 +33,9 @@ describe("User authentication api", () => {
     if (!resp) {
       expect(res.status).toBe(401);
     }
+    else{
+      expect(res.status).toBe(201);
+    }
 
   });
 });
