@@ -31,5 +31,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static("public"))
 app.use("", route)
-
+app.post("/speciality",async(req,res)=>{
+  const resp=await speciality.create(req.body)
+  res.json(resp)
+})
 module.exports={app,server};
