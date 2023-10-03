@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database");
 const { user } = require("./users");
+const { doctors } = require("./doctors");
 
 const slots = sequelize.define({
   Id: {
@@ -20,7 +21,7 @@ const slots = sequelize.define({
   doctorId:{
     type: DataTypes.UUID,
     references:{
-        model:user,
+        model:doctors,
         key:"Id"
     },
     allowNull:false
@@ -37,12 +38,4 @@ const slots = sequelize.define({
     type:DataTypes.INTEGER,
     allowNull:false
   },
-  doctor:{
-    type: DataTypes.UUID,
-    references:{
-        model:user,
-        key:"Id"
-    },
-    allowNull:false
-  }
 });

@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { speciality } = require("../models/speciality");
+const { nanoid } = require("nanoid");
 
 const getSpecialities=async(req,res)=>{
 const {limit,name}=req.query;

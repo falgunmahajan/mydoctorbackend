@@ -9,7 +9,7 @@ const hospital=sequelize.define('hospital',{
         primaryKey:true,
         allowNull:false // Or DataTypes.UUIDV1
       },
-    firstName:{
+    hospitalName:{
         type:DataTypes.STRING,
         allowNull:false,
     },
@@ -29,12 +29,11 @@ const hospital=sequelize.define('hospital',{
         allowNull:false,
         set(value){
             this.setDataValue('password',getHashPassword(value))
-        }
-        
+        }      
     },
-    role:{
-        type:DataTypes.STRING,
-        defaultValue:"hospital"
+    location:{
+          type:DataTypes.STRING,
+          allowNull:false
     },
     enabled:{
         type:DataTypes.BOOLEAN,
@@ -44,9 +43,6 @@ const hospital=sequelize.define('hospital',{
         type:DataTypes.BOOLEAN,
         defaultValue: false
     },
-    profile:{
-        type:DataTypes.JSON
-    }
 })
 
 module.exports={hospital}

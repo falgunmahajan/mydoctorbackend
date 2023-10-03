@@ -17,13 +17,6 @@ const user=sequelize.define('user',{
     lastName:{
         type:DataTypes.STRING,
     },
-    hospitalId:{
-        type: DataTypes.UUID,
-        references:{
-            model:hospital,
-            key:"Id"
-        }
-    },
     email:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -46,7 +39,7 @@ const user=sequelize.define('user',{
         
     },
     role:{
-        type:DataTypes.ENUM("admin","doctor","patient"),
+        type:DataTypes.ENUM("admin","doctor","patient","hospitalAdmin"),
         allowNull:false
     },
     enabled:{
@@ -57,9 +50,6 @@ const user=sequelize.define('user',{
         type:DataTypes.BOOLEAN,
         defaultValue: false
     },
-    profile:{
-        type:DataTypes.JSON
-    }
 })
 
 module.exports={user}
