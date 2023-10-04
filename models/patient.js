@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database");
+const { user } = require("./users");
 
 const patient = sequelize.define("patient", {
   Id: {
@@ -15,16 +16,32 @@ const patient = sequelize.define("patient", {
       key: "Id",
     },
   },
-  profile: {
-    dob:DataTypes.STRING,
-    BloodGroup: DataTypes.STRING,
-    HouseNo: DataTypes.STRING,
-    Colony: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
-    pincode: DataTypes.STRING,
-    image: DataTypes.STRING,
+  dob: {
+    type: DataTypes.STRING,
+  },
+  BloodGroup: {
+    type: DataTypes.STRING,
+  },
+  HouseNo: {
+    type: DataTypes.STRING,
+  },
+  Colony: {
+    type: DataTypes.STRING,
+  },
+  city: {
+    type: DataTypes.STRING,
+  },
+  state: {
+    type: DataTypes.STRING,
+  },
+  country: {
+    type: DataTypes.STRING,
+  },
+  pincode: {
+    type: DataTypes.STRING,
+  },
+  image: {
+    type: DataTypes.STRING,
   },
 });
-module.exports={patient}
+module.exports = { patient };

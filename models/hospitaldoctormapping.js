@@ -28,3 +28,4 @@ const hospitalDoctorMapping=sequelize.define("hospitalDoctorMapping",{
         type:DataTypes.INTEGER
       }
 })
+module.exports={hospitalDoctorMapping}

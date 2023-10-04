@@ -7,7 +7,8 @@ const { matchedPassword } = require("../utils/password");
 const authentication = async (req, res) => {
   console.log(req.body);
   let resp;
-  resp =
+  if(req.body.email){
+    resp =
     (await user.findOne({
       where: {
         email: req.body.email,
@@ -19,6 +20,22 @@ const authentication = async (req, res) => {
         email: req.body.email,
       },
     }));
+  }
+  if(req.body.contactNumber){
+    resp =
+    (await user.findOne({
+      where: {
+        contactNumber: req.body.contactNumber,
+      },
+    })) 
+    ||
+    (await hospital.findOne({
+      where: {
+        contactNumber: req.body.contactNumber,
+      },
+    }));
+  }
+  
     console.log(resp)
   if (resp && matchedPassword(req.body.password,resp.password)) {
     const token = getToken(resp)

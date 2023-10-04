@@ -3,7 +3,7 @@ const { sequelize } = require("../database");
 const { user } = require("./users");
 const { doctors } = require("./doctors");
 
-const slots = sequelize.define({
+const slots = sequelize.define("slot",{
   Id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -39,3 +39,4 @@ const slots = sequelize.define({
     allowNull:false
   },
 });
+module.exports={slots}
