@@ -11,6 +11,7 @@ const { patient } = require("./models/patient");
 const { hospitalDoctorMapping } = require("./models/hospitaldoctormapping");
 const { slots } = require("./models/slots");
 const { appointment } = require("./models/appointment");
+const { otp, otpModel } = require("./models/otp");
 const app = express();
 // mongoose.connect(process.env.DbUrl).then(()=>console.log("Database Successfully connected"))
 
@@ -43,15 +44,18 @@ const createModel = async () => {
 
   await appointment.sync();
   console.log("Appointment model is created");
+
+  await otpModel.sync();
+  console.log("otp model is created");
 };
-createModel()
+createModel();
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 app.use("", route);
 app.post("/speciality", async (req, res) => {
- const resp=req.body.map(async item=>await speciality.create(item))
+  const resp = req.body.map(async (item) => await speciality.create(item));
   // const resp = await speciality.create(req.body);
-   res.json(resp);
+  res.json(resp);
 });
 module.exports = { app, server };

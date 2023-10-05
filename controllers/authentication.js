@@ -1,8 +1,10 @@
 const { hospital } = require("../models/hospital");
 const { user } = require("../models/users");
 const { getToken } = require("../utils/jwt");
-
+const otpGenerator=require("otp-generator")
 const { matchedPassword } = require("../utils/password");
+const { otpModel } = require("../models/otp");
+const { sendOtp } = require("../utils/sendMail");
 
 const authentication = async (req, res) => {
   console.log(req.body);
@@ -38,6 +40,18 @@ const authentication = async (req, res) => {
   
     console.log(resp)
   if (resp && matchedPassword(req.body.password,resp.password)) {
+    
+    const otp=  otpGenerator.generate(6,{
+      lowerCaseAlphabets :false,
+      upperCaseAlphabets :false,
+      specialChars:false
+    })
+    await otpModel.create({
+      otp,
+    userId:resp.Id
+    })
+    console.log(otp)
+    await sendOtp(otp,resp)
     const token = getToken(resp)
     res.status(201).json({ accessToken: token, user: resp });
   } else {
