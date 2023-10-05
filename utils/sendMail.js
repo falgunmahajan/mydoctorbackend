@@ -6,7 +6,7 @@ const sendOtp=async(otp,resp)=>{
         secure: true,
         auth: {
           user: "falgunmahajan1999@gmail.com",
-          pass: 'wvkrneyuourevzsv'
+          pass: ''
         }
       });
       const message = await transporter.sendMail({
