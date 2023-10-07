@@ -45,8 +45,6 @@ const createModel = async () => {
   await appointment.sync();
   console.log("Appointment model is created");
 
-  await otpModel.sync();
-  console.log("otp model is created");
 };
 createModel();
 app.use(cors());

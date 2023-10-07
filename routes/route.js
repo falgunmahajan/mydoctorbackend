@@ -7,11 +7,15 @@ const { authentication } = require("../controllers/authentication");
 const { getSpecialities } = require("../controllers/specialities");
 const { authorization } = require("../controllers/authorization");
 const { auth } = require("../middlewares/auth");
+const { otpVerification } = require("../controllers/otpverification");
+const { getOtpAgain } = require("../controllers/getOtpAgain");
 const route=express.Router();
 route.post("/patients",registerPatients)
 route.post("/doctors",registerDoctors);
 route.post("/hospital",registerHospitals);
 route.post("/authentication",authentication);
+route.post("/otpverification",otpVerification);
+// route.get("/resendOtp",getOtpAgain);
 route.get("/authorization",auth,authorization);
 route.get("/hospital/:id",getHospital);
 route.get("/accounts/:role",isUnique);

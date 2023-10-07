@@ -1,6 +1,6 @@
 const { hospital } = require("../models/hospital");
 const { user } = require("../models/users");
-const { getToken } = require("../utils/jwt");
+const { getToken, otpToken } = require("../utils/jwt");
 const otpGenerator=require("otp-generator")
 const { matchedPassword } = require("../utils/password");
 const { otpModel } = require("../models/otp");
@@ -46,14 +46,10 @@ const authentication = async (req, res) => {
       upperCaseAlphabets :false,
       specialChars:false
     })
-    await otpModel.create({
-      otp,
-    userId:resp.Id
-    })
-    console.log(otp)
+   
     await sendOtp(otp,resp)
-    const token = getToken(resp)
-    res.status(201).json({ accessToken: token, user: resp });
+    const token = otpToken(otp)
+    res.status(201).json({otpToken:token,user:resp});
   } else {
     res
       .status(401)

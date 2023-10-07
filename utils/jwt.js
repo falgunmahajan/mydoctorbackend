@@ -11,4 +11,9 @@ const getToken=(resp)=>{
 const verifyToken=(token)=>{
   return jwt.verify(token,process.env.SECRETKEY)
 }
-module.exports={getToken,verifyToken}
+const otpToken=(otp)=>{
+  return jwt.sign({
+    otp:otp
+  },process.env.SECRETKEY, { expiresIn: '300s' })
+}
+module.exports={getToken,verifyToken,otpToken}
