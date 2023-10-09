@@ -8,8 +8,8 @@ const otpVerification = async (req, res) => {
     const orgOtp = tokenPayload.otp;
     console.log(orgOtp)
     if (orgOtp == req.body.otp) {
-      const token = getToken(req.body.user);
-      res.status(201).json({ accessToken: token, user: req.body.user });
+      const token = getToken(req.body.user.user);
+      res.status(201).json({ accessToken: token, user: req.body.user.user });
     } else {
       res.status(401).json({ msg: "Invalid OTP" });
     }
@@ -18,18 +18,5 @@ const otpVerification = async (req, res) => {
     res.status(401).json({ msg: "Invalid OTP" });
   }
  
-  // const userId=req.body.user.Id;
-  // const otp=req.body.otp;
-  // const resp=await otpModel.findOne({where:{
-  //     userId:userId,
-  //     otp:otp
-  // }})
-  // if(resp){
-  //     const token = getToken(req.body.user)
-  //     res.status(201).json({accessToken:token,user:req.body.user});
-  // }
-  // else{
-  //     res.status(401).json({msg:"Invalid OTP"});
-  // }
 };
 module.exports = { otpVerification };
