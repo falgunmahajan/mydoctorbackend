@@ -1,16 +1,18 @@
 const { patient } = require("../models/patient");
 
 const updateProfile = async (req, res) => {
+  console.log(req)
   console.log(req.body);
+  req.body.image=`/assests/images/uploads/${req.file.originalname}`
   const role = req.params.role;
   console.log(role);
   if (role == "patient") {
     try {
         const resp = await patient.update(
-            req.body.data,
+            req.body,
              {
                where: {
-                 userId: req.body.Id,
+                 userId: req.body.userId,
                },
              }
            );
