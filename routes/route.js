@@ -30,7 +30,7 @@ route.post("/authentication",authentication);
 route.post("/otpverification",otpVerification);
 route.post("/changepassword",changePassword);
 route.post("/updateProfile/:role", upload.single('image'),updateProfile);
-route.get("/authorization",auth,authorization);
+route.get("/authorization/:role",auth,authorization);
 route.get("/hospital/:id",getHospital);
 route.get("/accounts/:role",isUnique);
 route.get("/specializations",getSpecialities)

@@ -3,9 +3,9 @@ const getToken=(resp)=>{
    return jwt.sign(
         {
           Id: resp.Id,
-          email: resp.email,
+          email: resp.email
         },
-        process.env.SECRETKEY, { expiresIn: '30d' }
+        process.env.SECRETKEY, { expiresIn: '2d' }
       );
 }
 const verifyToken=(token)=>{

@@ -3,6 +3,7 @@ const {  DataTypes } = require("sequelize");
 const { sequelize } = require("../database");
 const { getHashPassword } = require("../utils/password");
 const { hospital } = require("./hospital");
+const { patient } = require("./patient");
 const user=sequelize.define('user',{
     Id:{
         type: DataTypes.UUID,
@@ -51,5 +52,5 @@ const user=sequelize.define('user',{
         defaultValue: false
     },
 })
-
+// user.hasOne(patient)
 module.exports={user}

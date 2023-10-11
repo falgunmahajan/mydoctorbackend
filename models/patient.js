@@ -44,4 +44,5 @@ const patient = sequelize.define("patient", {
     type: DataTypes.STRING,
   },
 });
+patient.belongsTo(user)
 module.exports = { patient };
