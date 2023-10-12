@@ -14,6 +14,6 @@ const verifyToken=(token)=>{
 const otpToken=(otp)=>{
   return jwt.sign({
     otp:otp
-  },process.env.SECRETKEY, { expiresIn: '300s' })
+  },process.env.SECRETKEY, { expiresIn: '3d' })
 }
 module.exports={getToken,verifyToken,otpToken}

@@ -40,4 +40,5 @@ const doctors = sequelize.define("doctor", {
     experience:{
       type:DataTypes.ARRAY(DataTypes.JSON)}
 });
+doctors.belongsTo(user)
 module.exports={doctors}
