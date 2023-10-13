@@ -19,7 +19,7 @@ const doctors = sequelize.define("doctor", {
     },
   },
     languages:{
-      type:DataTypes.ARRAY(DataTypes.STRING)
+      type:DataTypes.ARRAY(DataTypes.JSON)
     },
     bio:{
       type:DataTypes.STRING

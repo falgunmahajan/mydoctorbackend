@@ -23,8 +23,8 @@ const storage = multer.diskStorage({
   })
   
   const upload = multer({ storage: storage })
-route.post("/patients",registerPatients)
-route.post("/doctors",registerDoctors);
+route.post("/patient",registerPatients)
+route.post("/doctor",registerDoctors);
 route.post("/hospital",registerHospitals);
 route.post("/authentication",authentication);
 route.post("/otpverification",otpVerification);
