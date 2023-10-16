@@ -5,7 +5,10 @@ const { doctors } = require("../models/doctors");
 const updateProfile = async (req, res) => {
   console.log(req)
   console.log(req.body);
-  req.body.image=`/assests/images/uploads/${req.file.originalname}`
+  if(req.file){
+
+    req.body.image=`/assests/images/uploads/${req.file.originalname}`
+  }
   const role = req.params.role;
   console.log(role);
   console.log(req.body)

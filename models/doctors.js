@@ -18,27 +18,33 @@ const doctors = sequelize.define("doctor", {
       key: "Id",
     },
   },
-    languages:{
-      type:DataTypes.ARRAY(DataTypes.JSON)
-    },
-    bio:{
-      type:DataTypes.STRING
-    },
-    Qualification:
-    {
-     type: DataTypes.ARRAY(DataTypes.JSON)},
-    Specialities:{
-      type:DataTypes.ARRAY({
-        type:DataTypes.UUID,
-        references: {
-            model: speciality,
-            key: "Id",
-          },
-    })},
-    licenceNumber:{
-      type:DataTypes.STRING},
-    experience:{
-      type:DataTypes.ARRAY(DataTypes.JSON)}
+  languages: {
+    type: DataTypes.ARRAY(DataTypes.JSON),
+  },
+  bio: {
+    type: DataTypes.STRING,
+  },
+  image: {
+    type: DataTypes.STRING,
+  },
+  Qualification: {
+    type: DataTypes.ARRAY(DataTypes.JSON),
+  },
+  Specialities: {
+    type: DataTypes.ARRAY({
+      type: DataTypes.UUID,
+      references: {
+        model: speciality,
+        key: "Id",
+      },
+    }),
+  },
+  licenceNumber: {
+    type: DataTypes.STRING,
+  },
+  experience: {
+    type: DataTypes.ARRAY(DataTypes.JSON),
+  },
 });
-doctors.belongsTo(user)
-module.exports={doctors}
+doctors.belongsTo(user);
+module.exports = { doctors };
