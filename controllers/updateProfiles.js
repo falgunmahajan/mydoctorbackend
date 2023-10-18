@@ -29,7 +29,10 @@ const updateProfile = async (req, res) => {
     
   }
   if (role == "doctor") {
-    req.body.languages=JSON.parse(req.body.languages)
+    if(req.body.languages){
+
+      req.body.languages=JSON.parse(req.body.languages)
+    }
     console.log("data",req.body)
     try {
         const resp = await doctors.update(
