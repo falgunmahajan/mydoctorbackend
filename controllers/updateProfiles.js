@@ -34,19 +34,19 @@ const updateProfile = async (req, res) => {
       req.body.languages=JSON.parse(req.body.languages)
     }
     console.log("data",req.body)
-    try {
-        const resp = await doctors.update(
-            req.body,
-             {
-               where: {
-                 userId: req.body.userId,
-               },
-             }
-           );
-           res.status(201).json(resp)  
-    } catch (error) {
-        res.status(500).json({message:"Something went wrong"})
-    }
+    // try {
+    //     const resp = await doctors.update(
+    //         req.body,
+    //          {
+    //            where: {
+    //              userId: req.body.userId,
+    //            },
+    //          }
+    //        );
+    //        res.status(201).json(resp)  
+    // } catch (error) {
+    //     res.status(500).json({message:"Something went wrong"})
+    // }
     
   }
 

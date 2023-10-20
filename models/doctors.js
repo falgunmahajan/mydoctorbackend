@@ -30,15 +30,6 @@ const doctors = sequelize.define("doctor", {
   Qualification: {
     type: DataTypes.ARRAY(DataTypes.JSON),
   },
-  Specialities: {
-    type: DataTypes.ARRAY({
-      type: DataTypes.UUID,
-      references: {
-        model: speciality,
-        key: "Id",
-      },
-    }),
-  },
   licenceNumber: {
     type: DataTypes.STRING,
   },
@@ -46,5 +37,6 @@ const doctors = sequelize.define("doctor", {
     type: DataTypes.ARRAY(DataTypes.JSON),
   },
 });
+
 doctors.belongsTo(user);
 module.exports = { doctors };
