@@ -25,7 +25,14 @@ const hospitalDoctorMapping=sequelize.define("hospitalDoctorMapping",{
           },
       },
       consultationFee:{
-        type:DataTypes.INTEGER
+        type:DataTypes.INTEGER,
+        allowNull:false
+      },
+      position:{
+        type:DataTypes.STRING,
+        allowNull:false
       }
 })
+doctors.belongsToMany(hospital,{through:hospitalDoctorMapping})
+hospital.belongsToMany(doctors,{through:hospitalDoctorMapping})
 module.exports={hospitalDoctorMapping}

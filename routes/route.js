@@ -12,7 +12,8 @@ const { getOtpAgain } = require("../controllers/getOtpAgain");
 const { changePassword } = require("../controllers/changePassword");
 const { updateProfile } = require("../controllers/updateProfiles");
 const route=express.Router();
-const multer=require("multer")
+const multer=require("multer");
+const { getHospitals } = require("../controllers/hospitals");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'public/assests/images/uploads')
@@ -29,9 +30,10 @@ route.post("/hospital",registerHospitals);
 route.post("/authentication",authentication);
 route.post("/otpverification",otpVerification);
 route.post("/changepassword",changePassword);
-route.post("/updateProfile/:role", upload.single('image'),updateProfile);
+route.put("/updateProfile/:role", upload.single('image'),updateProfile);
 route.get("/authorization/:role",auth,authorization);
 route.get("/hospital/:id",getHospital);
 route.get("/accounts/:role",isUnique);
 route.get("/specializations",getSpecialities)
+route.get("/hospitals",getHospitals)
 module.exports={route}
