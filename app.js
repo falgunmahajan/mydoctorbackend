@@ -59,4 +59,4 @@ app.post("/speciality", async (req, res) => {
   // const resp = await speciality.create(req.body);
   res.json(resp);
 });
-module.exports = { app, server };
+module.exports = { app, server,createModel};

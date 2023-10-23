@@ -14,6 +14,7 @@ const { updateProfile } = require("../controllers/updateProfiles");
 const route=express.Router();
 const multer=require("multer");
 const { getHospitals } = require("../controllers/hospitals");
+const { getDoctors } = require("../controllers/getDoctors");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'public/assests/images/uploads')
@@ -36,4 +37,5 @@ route.get("/hospital/:id",getHospital);
 route.get("/accounts/:role",isUnique);
 route.get("/specializations",getSpecialities)
 route.get("/hospitals",getHospitals)
+route.get("/doctors",getDoctors)
 module.exports={route}

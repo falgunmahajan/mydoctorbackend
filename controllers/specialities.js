@@ -16,7 +16,7 @@ else{
     }})
 }
 
-res.json({
+res.status(200).json({
     total:specialities.length,
     limit:Number(limit),
     skip:0,
