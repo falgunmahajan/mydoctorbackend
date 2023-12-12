@@ -13,10 +13,10 @@ res.json({
 
 
 export const registerHospitals=async(req:Request,res:Response)=>{
-console.log(req.body)
+// console.log(req.body)
 try {
     const resp = await hospital.create(req.body)
-console.log(resp);
+// console.log(resp);
 res.status(201).json(resp)
 } catch (error) {
     res.status(500).json(error)

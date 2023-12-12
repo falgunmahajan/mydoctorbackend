@@ -17,9 +17,9 @@ const isUnique = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(role);
     const email = req.query.email;
     const model = role === "hospital" ? hospital_1.hospital : users_1.user;
-    console.log(model);
+    // console.log(model);
     const contactNumber = req.query.contactNumber;
-    console.log(email, contactNumber);
+    // console.log(email, contactNumber);
     let resp;
     if (role === "hospital") {
         if (email) {

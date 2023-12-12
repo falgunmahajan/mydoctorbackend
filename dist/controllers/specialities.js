@@ -35,6 +35,6 @@ const getSpecialities = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.getSpecialities = getSpecialities;
 const createSpecialities = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const resp = req.body.map((item) => __awaiter(void 0, void 0, void 0, function* () { return yield speciality_1.speciality.create(item); }));
-    res.json(resp);
+    res.status(201).json(resp);
 });
 exports.createSpecialities = createSpecialities;

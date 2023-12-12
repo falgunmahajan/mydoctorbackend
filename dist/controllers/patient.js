@@ -13,14 +13,14 @@ exports.registerPatients = void 0;
 const patient_1 = require("../models/patient");
 const users_1 = require("../models/users");
 const registerPatients = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    // console.log(req.body)
     req.body.role = "patient";
     try {
         const resp = yield users_1.user.create(req.body);
         yield patient_1.patient.create({
             userId: resp.Id
         });
-        console.log(resp);
+        // console.log(resp);
         res.status(201).json(resp);
     }
     catch (error) {

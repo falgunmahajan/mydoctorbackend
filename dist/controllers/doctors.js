@@ -37,14 +37,14 @@ const getDoctors = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getDoctors = getDoctors;
 const registerDoctors = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    // console.log(req.body)
     req.body.role = "doctor";
     try {
         const resp = yield users_1.user.create(req.body);
         yield doctors_1.doctors.create({
             userId: resp.Id
         });
-        console.log(resp);
+        // console.log(resp);
         res.status(201).json(resp);
     }
     catch (error) {

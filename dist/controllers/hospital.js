@@ -20,10 +20,10 @@ const getHospitals = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getHospitals = getHospitals;
 const registerHospitals = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    // console.log(req.body)
     try {
         const resp = yield hospital_1.hospital.create(req.body);
-        console.log(resp);
+        // console.log(resp);
         res.status(201).json(resp);
     }
     catch (error) {

@@ -9,7 +9,7 @@ export interface specialityAttributes {
  deleted:boolean;
  imageUrl:string
 }
-interface specialityInstance extends Model<specialityAttributes>, 
+export interface specialityInstance extends Model<specialityAttributes>, 
 specialityAttributes {
   createdAt?: Date;
   updatedAt?: Date;

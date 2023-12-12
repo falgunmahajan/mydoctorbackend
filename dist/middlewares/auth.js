@@ -63,7 +63,7 @@ const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () 
                 throw new Error("User not found");
             }
             else {
-                req.user = userData;
+                res.locals.user = userData;
                 next();
             }
         }

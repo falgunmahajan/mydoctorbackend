@@ -7,9 +7,9 @@ const isUnique = async (req: Request, res: Response) => {
   console.log(role);
   const email = req.query.email as string;
   const model = role === "hospital" ? hospital : user;
-  console.log(model);
+  // console.log(model);
   const contactNumber = req.query.contactNumber as string;
-  console.log(email, contactNumber);
+  // console.log(email, contactNumber);
   let resp;
   if (role === "hospital") {
     if (email) {

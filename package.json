@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \" tsc -w\" \"nodemon  dist/app.js\"",
     "start": "nodemon  dist/app.js",
-    "start1": "ts-node --transpile-only src/app.ts",
+    "test:coverage": "nyc mocha --require ts-node/register test/**.spec.ts ",
     "test": "mocha --require ts-node/register test/**.spec.ts "
   },
   "author": "",
@@ -23,6 +23,7 @@
     "multer": "^1.4.5-lts.1",
     "nanoid": "^5.0.2",
     "nodemailer": "^6.9.7",
+    "nyc": "^15.1.0",
     "otp-generator": "^4.0.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",

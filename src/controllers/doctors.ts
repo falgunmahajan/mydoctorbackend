@@ -27,7 +27,7 @@ export const getDoctors=async(req:Request,res:Response)=>{
 
 
 export const registerDoctors=async(req:Request,res:Response)=>{
-console.log(req.body)
+// console.log(req.body)
 req.body.role="doctor";
 try {
     const resp = await user.create(req.body)
@@ -35,7 +35,7 @@ try {
     await doctors.create({
         userId:resp.Id
      })
-console.log(resp);
+// console.log(resp);
 res.status(201).json(resp)
 } catch (error) {
     res.status(500).json(error)

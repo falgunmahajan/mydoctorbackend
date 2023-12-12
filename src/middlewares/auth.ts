@@ -6,6 +6,7 @@ import { doctors } from "../models/doctors";
 import { speciality } from "../models/speciality";
 import { hospital } from "../models/hospital";
 export const auth = async (req:Request, res:Response, next:NextFunction) => {
+ 
   console.log(req.headers.authorization);
   const role = req.params.role;
   console.log(role);
@@ -50,7 +51,7 @@ export const auth = async (req:Request, res:Response, next:NextFunction) => {
     if (!userData) {
       throw new Error("User not found");
     } else {
-      req.user = userData;
+      res.locals.user = userData;
       next();
     }
 }
