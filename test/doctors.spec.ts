@@ -6,14 +6,24 @@ import { server } from "../src/app";
 import { user } from "../src/models/users";
 chai.use(chaiHttp);
 describe("Doctors Api Testing", () => {
-  let stub: SinonStub;
+  let createStub: SinonStub;
+  let findStub: SinonStub;
   afterEach(() => {
-    if (stub) stub.restore();
+    if (createStub) createStub.restore();
+    if(findStub) findStub.restore()
   });
 
   after(() => {
     server.close();
   });
+  const doctor = {
+    firstName: "Dr. abc def ",
+    lastName: "ghi",
+    email: "ghi@gmail.com",
+    contactNumber: "7385387892",
+    password: "$2a$10$mWuJ/BjN7.jGAdS/nD2dGuQpFcZdq.L1fDojnDxv08Ig3Q0DzCjQS",
+    gender: "male",
+  };
   it("should get all the doctors", (done) => {
     const doctorsList: any = [
       {
@@ -224,16 +234,28 @@ describe("Doctors Api Testing", () => {
         hospitals: [],
       },
     ];
-    sinon.stub(doctors, "findAll").resolves(doctorsList);
+    findStub=sinon.stub(doctors, "findAll").resolves(doctorsList);
     chai
       .request(server)
       .get("/doctors")
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.deep.equal(doctorsList);
+        done();
       });
-    done();
+   
   });
+  it("it should return error while getting doctors",(done)=>{
+   findStub=sinon.stub(doctors, "findAll").rejects();
+    chai
+      .request(server)
+      .get("/doctors")
+      .end((err, res) => {
+        expect(res).to.have.status(500);
+        done();
+      });
+    
+  })
   it("should register all the doctors", (done) => {
     const doctorsList: any = {
       Id: "ad9f2f72-4da8-4b28-813b-959615dae476",
@@ -249,15 +271,8 @@ describe("Doctors Api Testing", () => {
       createdAt: "2023-11-08T04:50:27.257Z",
       updatedAt: "2023-11-08T04:50:27.257Z",
     };
-    const doctor = {
-      firstName: "Dr. abc def ",
-      lastName: "ghi",
-      email: "ghi@gmail.com",
-      contactNumber: "7385387892",
-      password: "$2a$10$mWuJ/BjN7.jGAdS/nD2dGuQpFcZdq.L1fDojnDxv08Ig3Q0DzCjQS",
-      gender: "male",
-    };
-    stub = sinon.stub(user, "create").resolves(doctorsList);
+   
+    createStub = sinon.stub(user, "create").resolves(doctorsList);
     sinon.stub(doctors, "create");
     chai
       .request(server)
@@ -266,7 +281,19 @@ describe("Doctors Api Testing", () => {
       .end((err, res) => {
         expect(res).to.have.status(201);
         expect(res.body).to.deep.equal(doctorsList);
+        done();
       });
-    done();
+    
   });
+  it("it should return error",(done)=>{
+    createStub= sinon.stub(user, "create").rejects()
+    chai
+      .request(server)
+      .post("/doctor")
+      .send(doctor)
+      .end((err, res) => {
+        expect(res).to.have.status(500);
+        done();
+      });
+  })
 });

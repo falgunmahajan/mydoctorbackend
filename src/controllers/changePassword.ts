@@ -3,7 +3,7 @@ import { user, userAttributes } from "../models/users";
 import { matchedPassword } from "../utils/password";
 
 const changePassword=async(req:Request,res:Response)=>{
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const userData=await user.findOne({where:{
             Id:req.body.id,

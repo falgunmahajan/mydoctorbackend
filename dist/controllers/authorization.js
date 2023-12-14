@@ -11,6 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authorization = void 0;
 const authorization = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(res.locals.user);
+    res.status(200).json(res.locals.user);
 });
 exports.authorization = authorization;

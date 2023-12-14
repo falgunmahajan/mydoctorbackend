@@ -19,7 +19,7 @@ export const getDoctors=async(req:Request,res:Response)=>{
           });
           res.status(200).json(resp)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({message:"Something went wrong"})
     }
    

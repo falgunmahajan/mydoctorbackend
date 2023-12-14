@@ -24,22 +24,22 @@ res.status(201).json(resp)
 
 }
 
-export const getHospitalById=async(req:Request,res:Response)=>{
-    const hospitalId=req.params.id;
-    try {
-        const resp=await hospital.findOne({
-            where:{
-                Id:hospitalId
-            }
-        })
-        if(resp){
-            res.status(200).json(resp)
-        }
-        else{
-            res.status(400).json({msg:"Not Found"}) 
-        }
+// export const getHospitalById=async(req:Request,res:Response)=>{
+//     const hospitalId=req.params.id;
+//     try {
+//         const resp=await hospital.findOne({
+//             where:{
+//                 Id:hospitalId
+//             }
+//         })
+//         if(resp){
+//             res.status(200).json(resp)
+//         }
+//         else{
+//             res.status(400).json({msg:"Not Found"}) 
+//         }
         
-    } catch (error) {
-        res.status(400).json({msg:"Not Found"})
-    }
-}
+//     } catch (error) {
+//         res.status(400).json({msg:"Not Found"})
+//     }
+// }

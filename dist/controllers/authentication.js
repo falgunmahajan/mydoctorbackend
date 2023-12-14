@@ -20,7 +20,7 @@ const jwt_1 = require("../utils/jwt");
 // const { matchedPassword } = require("../utils/password");
 // const { sendOtp } = require("../utils/sendMail");
 const authentication = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    // console.log(req.body);
     let resp;
     if (req.body.email) {
         resp =
@@ -50,14 +50,14 @@ const authentication = (req, res) => __awaiter(void 0, void 0, void 0, function*
                         },
                     }));
     }
-    console.log(resp);
+    // console.log(resp)
     if (resp && (0, password_1.matchedPassword)(req.body.password, resp.password)) {
         const otp = (0, otp_generator_1.generate)(6, {
             lowerCaseAlphabets: false,
             upperCaseAlphabets: false,
             specialChars: false
         });
-        console.log(typeof otp);
+        //  console.log(typeof otp)
         yield (0, sendMail_1.sendOtp)(otp, resp);
         const token = (0, jwt_1.otpToken)(otp);
         res.status(201).json({ otpToken: token, user: resp });

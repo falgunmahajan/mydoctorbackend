@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHospitalById = exports.registerHospitals = exports.getHospitals = void 0;
+exports.registerHospitals = exports.getHospitals = void 0;
 const hospital_1 = require("../models/hospital");
 const getHospitals = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const hospitals = yield hospital_1.hospital.findAll({});
@@ -31,23 +31,21 @@ const registerHospitals = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.registerHospitals = registerHospitals;
-const getHospitalById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const hospitalId = req.params.id;
-    try {
-        const resp = yield hospital_1.hospital.findOne({
-            where: {
-                Id: hospitalId
-            }
-        });
-        if (resp) {
-            res.status(200).json(resp);
-        }
-        else {
-            res.status(400).json({ msg: "Not Found" });
-        }
-    }
-    catch (error) {
-        res.status(400).json({ msg: "Not Found" });
-    }
-});
-exports.getHospitalById = getHospitalById;
+// export const getHospitalById=async(req:Request,res:Response)=>{
+//     const hospitalId=req.params.id;
+//     try {
+//         const resp=await hospital.findOne({
+//             where:{
+//                 Id:hospitalId
+//             }
+//         })
+//         if(resp){
+//             res.status(200).json(resp)
+//         }
+//         else{
+//             res.status(400).json({msg:"Not Found"}) 
+//         }
+//     } catch (error) {
+//         res.status(400).json({msg:"Not Found"})
+//     }
+// }

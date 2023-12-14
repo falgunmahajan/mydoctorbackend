@@ -7,13 +7,13 @@ import { speciality } from "../models/speciality";
 import { hospital } from "../models/hospital";
 export const auth = async (req:Request, res:Response, next:NextFunction) => {
  
-  console.log(req.headers.authorization);
+  // console.log(req.headers.authorization);
   const role = req.params.role;
-  console.log(role);
+  // console.log(role);
   try {
     if(req.headers.authorization){
         const payload = verifyToken(req.headers.authorization);
-        console.log(payload);
+        // console.log(payload);
     let userData;
     if (role === "patient")     {
       userData = await patient.findOne({
@@ -56,7 +56,7 @@ export const auth = async (req:Request, res:Response, next:NextFunction) => {
     }
 }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(401).json({ message: "Unauthorized User" });
   }
 };

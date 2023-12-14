@@ -11,7 +11,7 @@ import { otpToken } from "../utils/jwt";
 // const { sendOtp } = require("../utils/sendMail");
 
 const authentication = async (req:Request, res:Response) => {
-  console.log(req.body);
+  // console.log(req.body);
   let resp;
   if(req.body.email){
     resp =
@@ -42,7 +42,7 @@ const authentication = async (req:Request, res:Response) => {
     }));
   }
   
-    console.log(resp)
+    // console.log(resp)
   if (resp && matchedPassword(req.body.password,resp.password)) {
     
     const otp=  generate(6,{
@@ -50,7 +50,7 @@ const authentication = async (req:Request, res:Response) => {
       upperCaseAlphabets :false,
       specialChars:false
     })
-   console.log(typeof otp)
+  //  console.log(typeof otp)
     await sendOtp(otp,resp)
     const token = otpToken(otp)
     res.status(201).json({otpToken:token,user:resp});

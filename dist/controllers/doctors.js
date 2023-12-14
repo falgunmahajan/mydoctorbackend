@@ -31,7 +31,7 @@ const getDoctors = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).json(resp);
     }
     catch (error) {
-        console.log(error);
+        // console.log(error)
         res.status(500).json({ message: "Something went wrong" });
     }
 });

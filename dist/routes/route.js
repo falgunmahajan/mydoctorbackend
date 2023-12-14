@@ -36,7 +36,7 @@ exports.route.post("/otpverification", otpVerification_1.otpVerification);
 exports.route.post("/changepassword", changePassword_1.changePassword);
 exports.route.put("/updateProfile/:role", upload.single('image'), updateProfiles_1.updateProfile);
 exports.route.get("/authorization/:role", auth_1.auth, authorization_1.authorization);
-exports.route.get("/hospital/:id", hospital_1.getHospitalById);
+//  route.get("/hospital/:id",getHospitalById);
 exports.route.get("/accounts/:role", accounts_1.isUnique);
 exports.route.get("/specializations", specialities_1.getSpecialities);
 exports.route.get("/hospitals", hospital_1.getHospitals);

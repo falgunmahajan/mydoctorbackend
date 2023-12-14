@@ -6,7 +6,17 @@ import { server } from "../src/app";
 import { hospital } from "../src/models/hospital";
 chai.use(chaiHttp);
 describe("Hospitals Api Testing", () => {
-  
+  const hospitalData = {
+    "hospitalName": "Xyz Hospital",
+    "email": "xyz@gmail.com",
+    "contactNumber": "5436537858",
+    "password": "$2a$10$fBGV8hp/b4BKTOdY6m7INe.tx5k2qbM96lALcdCJweDxshpCkYt66",
+    "location": "Bakshi Nagar",
+};
+let stub:SinonStub;
+afterEach(()=>{
+  if(stub) stub.restore()
+})
 
   after(() => {
     server.close();
@@ -49,8 +59,9 @@ describe("Hospitals Api Testing", () => {
             total:hospitalList.length,
             data:hospitalList
         });
+        done();
       });
-    done();
+  
   });
   it("should register all the hospitals", (done) => {
     const hospitalList: any =    {
@@ -65,14 +76,8 @@ describe("Hospitals Api Testing", () => {
         "createdAt": "2023-10-21T07:46:12.374Z",
         "updatedAt": "2023-10-21T07:46:12.374Z"
     };
-    const hospitalData = {
-        "hospitalName": "Xyz Hospital",
-        "email": "xyz@gmail.com",
-        "contactNumber": "5436537858",
-        "password": "$2a$10$fBGV8hp/b4BKTOdY6m7INe.tx5k2qbM96lALcdCJweDxshpCkYt66",
-        "location": "Bakshi Nagar",
-    };
-    sinon.stub(hospital, "create").resolves(hospitalList);
+   
+    stub=sinon.stub(hospital, "create").resolves(hospitalList);
     
     chai
       .request(server)
@@ -81,7 +86,20 @@ describe("Hospitals Api Testing", () => {
       .end((err, res) => {
         expect(res).to.have.status(201);
         expect(res.body).to.deep.equal(hospitalList);
+        done();
       });
-    done();
+   
   });
+  it("should return an error",(done)=>{
+    stub=sinon.stub(hospital, "create").rejects();
+    
+    chai
+      .request(server)
+      .post("/hospital")
+      .send(hospitalData)
+      .end((err, res) => {
+        expect(res).to.have.status(500);
+        done();
+      });
+  })
 });

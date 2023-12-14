@@ -3,7 +3,7 @@ import multer from "multer"
 import { createSpecialities, getSpecialities } from "../controllers/specialities";
 import { getDoctors, registerDoctors } from "../controllers/doctors";
 import { registerPatients } from "../controllers/patient";
-import { getHospitalById, getHospitals, registerHospitals } from "../controllers/hospital";
+import {  getHospitals, registerHospitals } from "../controllers/hospital";
 import { authentication } from "../controllers/authentication";
 import { otpVerification } from "../controllers/otpVerification";
 import { changePassword } from "../controllers/changePassword";
@@ -15,7 +15,7 @@ export const route=express.Router();
 
 
 
-const storage = multer.diskStorage({
+export const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'public/assests/images/uploads')
     },
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
  route.post("/changepassword",changePassword);
  route.put("/updateProfile/:role", upload.single('image'),updateProfile);
  route.get("/authorization/:role",auth,authorization);
- route.get("/hospital/:id",getHospitalById);
+//  route.get("/hospital/:id",getHospitalById);
  route.get("/accounts/:role",isUnique);
 route.get("/specializations",getSpecialities)
  route.get("/hospitals",getHospitals)
