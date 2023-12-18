@@ -7,19 +7,17 @@ import { profileAttributes } from "../interfaces/doctorProfessional";
 
 
 const updateDoctorProfile = async (data:doctorAttributes) => {
-  try {
+  
     return await doctors.update(data, {
       where: {
         userId: data.userId,
       },
     });
-  } catch (err) {
-    return err;
-  }
+  
 };
 
 const updateSpecialities = async (data: { specialities: specialityAttributes[]; doctorId: string; }) => {
-  try {
+ 
     data.specialities.map(async (item) => {
       const record = await doctorSpecialityMapping.findOne({
         where: { doctorId: data.doctorId, specialityId: item.Id },
@@ -40,13 +38,11 @@ const updateSpecialities = async (data: { specialities: specialityAttributes[]; 
         },
       },
     });
-  } catch (error) {
-    return error;
-  }
+ 
 };
 
 const updateProfessional = async (data: { profile:string ; doctorId: string; }) => {
-  try {
+ 
     const profile :Array<profileAttributes>= JSON.parse(data.profile);
     console.log(profile);
     profile.map(async (item) => {
@@ -84,9 +80,7 @@ const updateProfessional = async (data: { profile:string ; doctorId: string; }) 
         },
       });
     });
-  } catch (error) {
-    return error;
-  }
+  
 };
 export{
   updateDoctorProfile,

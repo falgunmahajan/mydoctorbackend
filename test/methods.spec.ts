@@ -37,10 +37,5 @@ describe("Model Password Testing", () => {
     expect(fakeInstance.setDataValue.calledWith(pswd, hash));
   });
 });
-// describe('Multer Storage Testing', () => {
-//     const file={originalName:"image.jpg"}
-//   it("should set the name correctly",()=>{
-//  storage.filename()
-//   })
-// })
+
 
