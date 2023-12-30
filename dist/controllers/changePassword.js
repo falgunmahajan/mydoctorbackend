@@ -13,7 +13,7 @@ exports.changePassword = void 0;
 const users_1 = require("../models/users");
 const password_1 = require("../utils/password");
 const changePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
+    // console.log(req.body)
     try {
         const userData = yield users_1.user.findOne({ where: {
                 Id: req.body.id,

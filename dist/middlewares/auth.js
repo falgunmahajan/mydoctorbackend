@@ -17,13 +17,13 @@ const doctors_1 = require("../models/doctors");
 const speciality_1 = require("../models/speciality");
 const hospital_1 = require("../models/hospital");
 const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
     const role = req.params.role;
-    console.log(role);
+    // console.log(role);
     try {
         if (req.headers.authorization) {
             const payload = (0, jwt_1.verifyToken)(req.headers.authorization);
-            console.log(payload);
+            // console.log(payload);
             let userData;
             if (role === "patient") {
                 userData = yield patient_1.patient.findOne({
@@ -67,9 +67,12 @@ const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () 
                 next();
             }
         }
+        else {
+            throw new Error("User not found");
+        }
     }
     catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(401).json({ message: "Unauthorized User" });
     }
 });

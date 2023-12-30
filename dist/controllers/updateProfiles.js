@@ -13,14 +13,14 @@ exports.updateProfile = void 0;
 const patient_1 = require("../models/patient");
 const updateData_1 = require("../utils/updateData");
 const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req);
-    console.log(req.body);
+    // console.log(req)
+    // console.log(req.body);
     if (req.file) {
         req.body.image = `/assests/images/uploads/${req.file.originalname}`;
     }
     const role = req.params.role;
     console.log(role);
-    console.log(req.body);
+    // console.log(req.body)
     if (role == "patient") {
         try {
             const resp = yield patient_1.patient.update(req.body, {
@@ -35,7 +35,7 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         }
     }
     if (role == "doctor") {
-        console.log("data", req.body);
+        // console.log("data",req.body)
         if (req.body.languages) {
             req.body.languages = JSON.parse(req.body.languages);
         }
@@ -64,7 +64,7 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 res.status(201).json({ message: "Your data is updated" });
             }
             catch (error) {
-                console.log(error);
+                // console.log(error)
                 res.status(500).json({ message: "Something went wrong" });
             }
         }

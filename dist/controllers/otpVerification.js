@@ -12,21 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.otpVerification = void 0;
 const jwt_1 = require("../utils/jwt");
 const otpVerification = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
-    try {
-        const tokenPayload = (0, jwt_1.verifyToken)(req.body.user.otpToken);
-        const orgOtp = tokenPayload.otp;
-        console.log(orgOtp);
-        if (orgOtp == req.body.otp) {
-            const token = (0, jwt_1.getToken)(req.body.user.user);
-            res.status(201).json({ accessToken: token, user: req.body.user.user });
-        }
-        else {
-            res.status(401).json({ msg: "Invalid OTP" });
-        }
+    // console.log(req.body);
+    const tokenPayload = (0, jwt_1.verifyToken)(req.body.user.otpToken);
+    const orgOtp = tokenPayload.otp;
+    // console.log(orgOtp)
+    if (orgOtp == req.body.otp) {
+        const token = (0, jwt_1.getToken)(req.body.user.user);
+        res.status(201).json({ accessToken: token, user: req.body.user.user });
     }
-    catch (error) {
-        console.log(error);
+    else {
         res.status(401).json({ msg: "Invalid OTP" });
     }
 });

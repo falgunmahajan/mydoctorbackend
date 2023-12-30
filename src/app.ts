@@ -16,9 +16,6 @@ import { route } from "./routes/route";
 dotenv.config()
 const app = express();
 
- const server = app.listen(process.env.PORT, () => {
-  console.log(`The app is listening at ${process.env.PORT}`);
-});
 const createModel = async () => {
   await sequelize.authenticate();
   console.log("Database Successfully connected");
@@ -55,6 +52,10 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use("", route);
 
-export{ app, server,
+const server = app.listen(process.env.PORT, () => {
+  console.log(`The app is listening at ${process.env.PORT}`);
+});
+
+export { app, server,
     createModel
 };

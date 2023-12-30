@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \" tsc -w\" \"nodemon  dist/app.js\"",
+    "ts-dev": "ts-node src/app.ts",
     "start": "nodemon  dist/app.js",
     "test:coverage": "nyc mocha --require ts-node/register test/**.spec.ts ",
     "test": "mocha --require ts-node/register test/**.spec.ts "
@@ -44,7 +45,7 @@
     "@types/sinon": "^17.0.1",
     "concurrently": "^8.2.2",
     "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
 }

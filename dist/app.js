@@ -30,10 +30,6 @@ const route_1 = require("./routes/route");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 exports.app = app;
-const server = app.listen(process.env.PORT, () => {
-    console.log(`The app is listening at ${process.env.PORT}`);
-});
-exports.server = server;
 const createModel = () => __awaiter(void 0, void 0, void 0, function* () {
     yield database_1.sequelize.authenticate();
     console.log("Database Successfully connected");
@@ -62,3 +58,7 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.static("public"));
 app.use("", route_1.route);
+const server = app.listen(process.env.PORT, () => {
+    console.log(`The app is listening at ${process.env.PORT}`);
+});
+exports.server = server;
