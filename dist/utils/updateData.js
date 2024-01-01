@@ -9,11 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfessional = exports.updateSpecialities = exports.updateDoctorProfile = void 0;
+exports.updateUser = exports.updateProfessional = exports.updateSpecialities = exports.updateDoctorProfile = void 0;
 const sequelize_1 = require("sequelize");
 const doctorSpecialityMapping_1 = require("../models/doctorSpecialityMapping");
 const doctors_1 = require("../models/doctors");
 const hospitalDoctorMapping_1 = require("../models/hospitalDoctorMapping");
+const users_1 = require("../models/users");
 const updateDoctorProfile = (data) => __awaiter(void 0, void 0, void 0, function* () {
     return yield doctors_1.doctors.update(data, {
         where: {
@@ -22,6 +23,14 @@ const updateDoctorProfile = (data) => __awaiter(void 0, void 0, void 0, function
     });
 });
 exports.updateDoctorProfile = updateDoctorProfile;
+const updateUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield users_1.user.update(data, {
+        where: {
+            Id: data.userId,
+        },
+    });
+});
+exports.updateUser = updateUser;
 const updateSpecialities = (data) => __awaiter(void 0, void 0, void 0, function* () {
     data.specialities.map((item) => __awaiter(void 0, void 0, void 0, function* () {
         const record = yield doctorSpecialityMapping_1.doctorSpecialityMapping.findOne({

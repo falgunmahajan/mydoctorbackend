@@ -14,7 +14,7 @@ const patient_1 = require("../models/patient");
 const updateData_1 = require("../utils/updateData");
 const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // console.log(req)
-    // console.log(req.body);
+    console.log(req.body);
     if (req.file) {
         req.body.image = `/assests/images/uploads/${req.file.originalname}`;
     }
@@ -23,6 +23,9 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     // console.log(req.body)
     if (role == "patient") {
         try {
+            if (req.body.firstName || req.body.lastName || req.body.contactNumber || req.body.email || req.body.gender) {
+                (0, updateData_1.updateUser)(req.body);
+            }
             const resp = yield patient_1.patient.update(req.body, {
                 where: {
                     userId: req.body.userId,
@@ -60,6 +63,9 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         }
         else {
             try {
+                if (req.body.firstName || req.body.lastName || req.body.contactNumber || req.body.email || req.body.gender) {
+                    (0, updateData_1.updateUser)(req.body);
+                }
                 yield (0, updateData_1.updateDoctorProfile)(req.body);
                 res.status(201).json({ message: "Your data is updated" });
             }

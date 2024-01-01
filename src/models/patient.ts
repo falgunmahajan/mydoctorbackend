@@ -3,7 +3,7 @@ import { sequelize } from "../database";
 import { user } from "./users";
 
 
-interface patientAttributes {
+export interface patientAttributes {
   Id: string;
   userId:string;
   dob?:string;

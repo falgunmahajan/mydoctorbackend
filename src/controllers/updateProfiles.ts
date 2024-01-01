@@ -1,19 +1,24 @@
 
 import { Request, Response } from "express";
 import { patient } from "../models/patient";
-import { updateDoctorProfile, updateProfessional, updateSpecialities } from "../utils/updateData";
+import { updateDoctorProfile, updateProfessional, updateSpecialities, updateUser } from "../utils/updateData";
+import { user } from "../models/users";
 
 export const updateProfile = async (req:Request, res:Response) => {
   // console.log(req)
-  // console.log(req.body);
+  console.log(req.body);
   if(req.file){
     req.body.image=`/assests/images/uploads/${req.file.originalname}`
   }
   const role = req.params.role;
   console.log(role);
   // console.log(req.body)
+ 
   if (role == "patient") {
     try {
+      if(req.body.firstName || req.body.lastName || req.body.contactNumber ||req.body.email || req.body.gender){
+        updateUser(req.body)
+      }
         const resp = await patient.update(
             req.body,
              {
@@ -53,6 +58,9 @@ export const updateProfile = async (req:Request, res:Response) => {
     }
 else{
   try {
+    if(req.body.firstName || req.body.lastName || req.body.contactNumber ||req.body.email || req.body.gender){
+      updateUser(req.body)
+    }
     await updateDoctorProfile(req.body)
     res.status(201).json({message:"Your data is updated"}) 
   } catch (error) {

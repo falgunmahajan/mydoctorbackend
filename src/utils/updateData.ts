@@ -4,6 +4,8 @@ import { doctorAttributes, doctors } from "../models/doctors";
 import {  hospitalDoctorMapping } from "../models/hospitalDoctorMapping";
 import { specialityAttributes } from "../models/speciality";
 import { profileAttributes } from "../interfaces/doctorProfessional";
+import { user, userAttributes } from "../models/users";
+import { patientAttributes } from "../models/patient";
 
 
 const updateDoctorProfile = async (data:doctorAttributes) => {
@@ -15,6 +17,19 @@ const updateDoctorProfile = async (data:doctorAttributes) => {
     });
   
 };
+interface UpdateUserAttributes extends userAttributes{
+  userId:string
+}
+const updateUser=async(data:UpdateUserAttributes)=>{
+  return await user.update(
+    data,
+     {
+       where: {
+         Id: data.userId,
+       },
+     }
+   );
+}
 
 const updateSpecialities = async (data: { specialities: specialityAttributes[]; doctorId: string; }) => {
  
@@ -86,4 +101,5 @@ export{
   updateDoctorProfile,
   updateSpecialities,
   updateProfessional,
+  updateUser
 };
