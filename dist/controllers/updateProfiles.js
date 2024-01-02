@@ -53,6 +53,7 @@ const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             }
         }
         else if (req.body.profile) {
+            console.log("51");
             try {
                 yield (0, updateData_1.updateProfessional)(req.body);
                 res.status(201).json({ message: "Your data is updated" });

@@ -7,6 +7,8 @@ import fs from "fs";
 import { doctors } from "../src/models/doctors";
 import { doctorSpecialityMapping } from "../src/models/doctorSpecialityMapping";
 import { hospitalDoctorMapping } from "../src/models/hospitalDoctorMapping";
+import { user } from "../src/models/users";
+import * as userUpdate from "../src/utils/updateData";
 chai.use(chaiHttp);
 describe("Update Profile Api Testing", () => {
   let stub: SinonStub;
@@ -248,6 +250,39 @@ describe("Update Profile Api Testing", () => {
         done();
       });
   });
- 
+  it("update the doctor in user table", (done) => {
+   
+    stub1 = sinon.stub(user, "update").resolves(record)
+   
+    chai
+      .request(server)
+      .put("/updateProfile/doctor")
+      .send({
+        firstName:"Doctor",
+        gender:"female"
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.deep.equal({ message: "Your data is updated" });
+        done();
+      });
+    })
+      it("update the patient in user table", (done) => {
+   
+        stub1 = sinon.stub(user, "update").resolves(record)
+       stub2=sinon.stub(userUpdate,"updateDoctorProfile").resolves()
+        chai
+          .request(server)
+          .put("/updateProfile/patient")
+          .send({
+            firstName:"Patient",
+            gender:"female"
+          })
+          .end((err, res) => {
+            expect(res).to.have.status(201);
+            // expect(res.body).to.deep.equal({ message: "Your data is updated" });
+            done();
+          });
+  });
   
 });

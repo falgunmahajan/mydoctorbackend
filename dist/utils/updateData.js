@@ -55,8 +55,14 @@ const updateSpecialities = (data) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.updateSpecialities = updateSpecialities;
 const updateProfessional = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(data.doctorId);
     const profile = JSON.parse(data.profile);
-    console.log(profile);
+    console.log("profile", profile);
+    if (!profile.length) {
+        yield hospitalDoctorMapping_1.hospitalDoctorMapping.destroy({
+            truncate: true
+        });
+    }
     profile.map((item) => __awaiter(void 0, void 0, void 0, function* () {
         const record = yield hospitalDoctorMapping_1.hospitalDoctorMapping.findOne({
             where: { doctorId: data.doctorId, hospitalId: item.hospital.Id },

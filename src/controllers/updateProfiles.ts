@@ -48,6 +48,7 @@ export const updateProfile = async (req:Request, res:Response) => {
       }
     }
    else if(req.body.profile){
+    console.log("51")
      try {
       await updateProfessional(req.body)
       res.status(201).json({message:"Your data is updated"}) 

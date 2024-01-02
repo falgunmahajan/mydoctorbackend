@@ -57,9 +57,14 @@ const updateSpecialities = async (data: { specialities: specialityAttributes[]; 
 };
 
 const updateProfessional = async (data: { profile:string ; doctorId: string; }) => {
- 
+ console.log(data.doctorId)
     const profile :Array<profileAttributes>= JSON.parse(data.profile);
-    console.log(profile);
+    console.log("profile",profile);
+    if(!profile.length){
+      await hospitalDoctorMapping.destroy({
+        truncate:true
+      })
+    }
     profile.map(async (item) => {
       const record = await hospitalDoctorMapping.findOne({
         where: { doctorId: data.doctorId, hospitalId: item.hospital.Id },
@@ -86,6 +91,7 @@ const updateProfessional = async (data: { profile:string ; doctorId: string; }) 
         );
       }
       const hospitalId = profile.map((item) => item.hospital.Id);
+     
       hospitalDoctorMapping.destroy({
         where: {
           doctorId: data.doctorId,

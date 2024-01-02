@@ -73,6 +73,15 @@ describe("Authorization Api Testing", () => {
        done();
      })
      });
+     it("should not authorize the doctor if header is not received", (done) => {
+  
+    
+       chai.request(server).get("/authorization/doctor").end((err,res)=>{
+         expect(res).to.have.status(401)
+         expect(res.body).to.deep.equal({ message: "Unauthorized User" })
+         done();
+       })
+       });
      it("should authorize the hospital", (done) => {
   
         tokenStub=sinon.stub(jwt,"verify").returns({
