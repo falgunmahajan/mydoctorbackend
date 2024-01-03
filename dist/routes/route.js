@@ -17,6 +17,7 @@ const updateProfiles_1 = require("../controllers/updateProfiles");
 const authorization_1 = require("../controllers/authorization");
 const auth_1 = require("../middlewares/auth");
 const accounts_1 = require("../controllers/accounts");
+const slots_1 = require("../controllers/slots");
 exports.route = express_1.default.Router();
 exports.storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
@@ -35,6 +36,7 @@ exports.route.post("/authentication", authentication_1.authentication);
 exports.route.post("/otpverification", otpVerification_1.otpVerification);
 exports.route.post("/changepassword", changePassword_1.changePassword);
 exports.route.put("/updateProfile/:role", upload.single('image'), updateProfiles_1.updateProfile);
+exports.route.post("/slots", slots_1.createSlots);
 exports.route.get("/authorization/:role", auth_1.auth, authorization_1.authorization);
 //  route.get("/hospital/:id",getHospitalById);
 exports.route.get("/accounts/:role", accounts_1.isUnique);

@@ -37,6 +37,5 @@ exports.slots = database_1.sequelize.define("slot", {
     },
     count: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
     },
 });

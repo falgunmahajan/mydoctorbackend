@@ -49,7 +49,6 @@ export const slots = sequelize.define<slotsInstance>("slot",{
   },
   count:{
     type:DataTypes.INTEGER,
-    allowNull:false
   },
 });
 

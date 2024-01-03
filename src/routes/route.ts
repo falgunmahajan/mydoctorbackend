@@ -11,6 +11,7 @@ import { updateProfile } from "../controllers/updateProfiles";
 import { authorization } from "../controllers/authorization";
 import { auth } from "../middlewares/auth";
 import { isUnique } from "../controllers/accounts";
+import { createSlots } from "../controllers/slots";
 export const route=express.Router();
 
 
@@ -34,6 +35,7 @@ export const storage = multer.diskStorage({
  route.post("/otpverification",otpVerification);
  route.post("/changepassword",changePassword);
  route.put("/updateProfile/:role", upload.single('image'),updateProfile);
+ route.post("/slots",createSlots)
  route.get("/authorization/:role",auth,authorization);
 //  route.get("/hospital/:id",getHospitalById);
  route.get("/accounts/:role",isUnique);
