@@ -11,7 +11,7 @@ import { updateProfile } from "../controllers/updateProfiles";
 import { authorization } from "../controllers/authorization";
 import { auth } from "../middlewares/auth";
 import { isUnique } from "../controllers/accounts";
-import { createSlots } from "../controllers/slots";
+import { createSlots, getSlots } from "../controllers/slots";
 export const route=express.Router();
 
 
@@ -38,6 +38,7 @@ export const storage = multer.diskStorage({
  route.post("/slots",createSlots)
  route.get("/authorization/:role",auth,authorization);
 //  route.get("/hospital/:id",getHospitalById);
+route.get("/slots",getSlots)
  route.get("/accounts/:role",isUnique);
 route.get("/specializations",getSpecialities)
  route.get("/hospitals",getHospitals)

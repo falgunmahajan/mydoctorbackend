@@ -49,6 +49,8 @@ export const slots = sequelize.define<slotsInstance>("slot",{
   },
   count:{
     type:DataTypes.INTEGER,
+    defaultValue: 0,
   },
 });
 
+slots.belongsTo(doctors)

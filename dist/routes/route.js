@@ -39,6 +39,7 @@ exports.route.put("/updateProfile/:role", upload.single('image'), updateProfiles
 exports.route.post("/slots", slots_1.createSlots);
 exports.route.get("/authorization/:role", auth_1.auth, authorization_1.authorization);
 //  route.get("/hospital/:id",getHospitalById);
+exports.route.get("/slots", slots_1.getSlots);
 exports.route.get("/accounts/:role", accounts_1.isUnique);
 exports.route.get("/specializations", specialities_1.getSpecialities);
 exports.route.get("/hospitals", hospital_1.getHospitals);

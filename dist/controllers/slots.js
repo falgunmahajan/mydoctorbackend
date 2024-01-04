@@ -9,8 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createSlots = void 0;
+exports.getSlots = exports.createSlots = void 0;
 const slots_1 = require("../models/slots");
+const doctors_1 = require("../models/doctors");
+const users_1 = require("../models/users");
 const createSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     try {
@@ -18,7 +20,30 @@ const createSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(201).json(resp);
     }
     catch (error) {
+        // console.log(error);
         res.status(500).json(error);
     }
 });
 exports.createSlots = createSlots;
+const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.query.doctorId;
+    try {
+        const resp = yield slots_1.slots.findAll({
+            include: [{
+                    model: doctors_1.doctors,
+                    where: {
+                        Id: id
+                    },
+                    include: [{
+                            model: users_1.user
+                        }]
+                }]
+        });
+        res.status(200).json(resp);
+    }
+    catch (error) {
+        // console.log(error)
+        res.status(500).json({ message: "Something went wrong" });
+    }
+});
+exports.getSlots = getSlots;

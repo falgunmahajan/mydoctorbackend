@@ -37,5 +37,7 @@ exports.slots = database_1.sequelize.define("slot", {
     },
     count: {
         type: sequelize_1.DataTypes.INTEGER,
+        defaultValue: 0,
     },
 });
+exports.slots.belongsTo(doctors_1.doctors);
