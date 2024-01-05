@@ -38,6 +38,7 @@ exports.route.post("/changepassword", changePassword_1.changePassword);
 exports.route.put("/updateProfile/:role", upload.single('image'), updateProfiles_1.updateProfile);
 exports.route.post("/slots", slots_1.createSlots);
 exports.route.get("/authorization/:role", auth_1.auth, authorization_1.authorization);
+exports.route.delete("/slots", slots_1.deleteSlots);
 //  route.get("/hospital/:id",getHospitalById);
 exports.route.get("/slots", slots_1.getSlots);
 exports.route.get("/accounts/:role", accounts_1.isUnique);
