@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer"
 import { createSpecialities, getSpecialities } from "../controllers/specialities";
-import { getDoctors, registerDoctors } from "../controllers/doctors";
+import { getDoctors, getDoctorById, registerDoctors } from "../controllers/doctors";
 import { registerPatients } from "../controllers/patient";
 import {  getHospitals, registerHospitals } from "../controllers/hospital";
 import { authentication } from "../controllers/authentication";
@@ -44,3 +44,4 @@ route.get("/slots",getSlots)
 route.get("/specializations",getSpecialities)
  route.get("/hospitals",getHospitals)
 route.get("/doctors",getDoctors)
+route.get("/doctor/:Id",getDoctorById)

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerDoctors = exports.getDoctors = void 0;
+exports.getDoctorById = exports.registerDoctors = exports.getDoctors = void 0;
 const doctors_1 = require("../models/doctors");
 const users_1 = require("../models/users");
 const speciality_1 = require("../models/speciality");
@@ -110,4 +110,30 @@ const registerDoctors = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.registerDoctors = registerDoctors;
-const getDoctorsByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () { });
+const getDoctorById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.Id;
+    console.log(id);
+    try {
+        const resp = yield doctors_1.doctors.findOne({
+            where: {
+                Id: id
+            },
+            include: [
+                {
+                    model: users_1.user,
+                },
+                {
+                    model: speciality_1.speciality,
+                },
+                {
+                    model: hospital_1.hospital,
+                },
+            ],
+        });
+        res.status(201).json(resp);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+});
+exports.getDoctorById = getDoctorById;

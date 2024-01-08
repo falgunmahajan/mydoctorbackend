@@ -100,4 +100,31 @@ export const registerDoctors = async (req: Request, res: Response) => {
   }
 };
 
-const getDoctorsByName = async (req: Request, res: Response) => {};
+export const getDoctorById = async (req: Request, res: Response) => {
+  const id=req.params.Id;
+  console.log(id)
+  try {
+    const resp = await doctors.findOne({
+      where :{
+        Id:id
+      },
+      include: [
+        {
+          model: user,
+        
+        },
+        {
+          model: speciality,
+        },
+        {
+          model: hospital,
+        },
+      ],
+    });
+    res.status(201).json(resp);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+
+};

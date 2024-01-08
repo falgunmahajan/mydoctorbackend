@@ -29,6 +29,8 @@ exports.createSlots = createSlots;
 const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.query.doctorId;
     const date = req.query.date;
+    const startDate = req.query.start;
+    console.log(startDate);
     if (date) {
         const dateStr = new Date(date);
         const startTime = new Date(dateStr.getFullYear(), dateStr.getMonth(), dateStr.getDate());
@@ -59,10 +61,15 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(500).json({ message: "Something went wrong" });
         }
     }
-    else {
+    if (startDate) {
         try {
             const resp = yield slots_1.slots.findAll({
                 order: [["startTime", "ASC"]],
+                where: {
+                    startTime: {
+                        [sequelize_1.Op.gte]: startDate,
+                    }
+                },
                 include: [{
                         model: doctors_1.doctors,
                         where: {

@@ -45,3 +45,4 @@ exports.route.get("/accounts/:role", accounts_1.isUnique);
 exports.route.get("/specializations", specialities_1.getSpecialities);
 exports.route.get("/hospitals", hospital_1.getHospitals);
 exports.route.get("/doctors", doctors_1.getDoctors);
+exports.route.get("/doctor/:Id", doctors_1.getDoctorById);

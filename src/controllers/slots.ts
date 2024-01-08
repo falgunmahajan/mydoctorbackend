@@ -18,6 +18,8 @@ export const createSlots=async(req:Request,res:Response)=>{
 export const getSlots=async(req:Request,res:Response)=>{
     const id=req.query.doctorId;
     const date=req.query.date as string;
+    const startDate=req.query.start as string;
+    console.log(startDate)
 if(date){
     const dateStr=new Date(date)
     const startTime=new Date(dateStr.getFullYear(),dateStr.getMonth(),dateStr.getDate())
@@ -48,10 +50,16 @@ if(date){
         res.status(500).json({message:"Something went wrong"}) 
     }
 }
-else{
+if(startDate){
     try {
         const resp=await slots.findAll({
             order:[["startTime","ASC"]],
+            where:{
+                startTime:{
+                    [Op.gte]:startDate,
+                  
+                }
+            },
             include:[{
                 model:doctors,
                 where:{
