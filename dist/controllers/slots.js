@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteSlots = exports.getSlots = exports.createSlots = void 0;
 const slots_1 = require("../models/slots");
 const doctors_1 = require("../models/doctors");
-const users_1 = require("../models/users");
 const sequelize_1 = require("sequelize");
+const hospital_1 = require("../models/hospital");
 const createSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     try {
@@ -44,13 +44,7 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                     }
                 },
                 include: [{
-                        model: doctors_1.doctors,
-                        where: {
-                            Id: id,
-                        },
-                        include: [{
-                                model: users_1.user
-                            }]
+                        model: hospital_1.hospital
                     }]
             });
             console.log(resp);
@@ -70,15 +64,14 @@ const getSlots = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                         [sequelize_1.Op.gte]: startDate,
                     }
                 },
-                include: [{
-                        model: doctors_1.doctors,
-                        where: {
-                            Id: id,
-                        },
+                include: [
+                    {
+                        model: hospital_1.hospital,
                         include: [{
-                                model: users_1.user
+                                model: doctors_1.doctors
                             }]
-                    }]
+                    }
+                ]
             });
             res.status(200).json(resp);
         }

@@ -4,6 +4,7 @@ exports.slots = void 0;
 const sequelize_1 = require("sequelize");
 const database_1 = require("../database");
 const doctors_1 = require("./doctors");
+const hospital_1 = require("./hospital");
 exports.slots = database_1.sequelize.define("slot", {
     Id: {
         type: sequelize_1.DataTypes.UUID,
@@ -27,6 +28,14 @@ exports.slots = database_1.sequelize.define("slot", {
         },
         allowNull: false
     },
+    hospitalId: {
+        type: sequelize_1.DataTypes.UUID,
+        references: {
+            model: hospital_1.hospital,
+            key: "Id"
+        },
+        allowNull: false
+    },
     deleted: {
         type: sequelize_1.DataTypes.BOOLEAN,
         defaultValue: false,
@@ -41,3 +50,4 @@ exports.slots = database_1.sequelize.define("slot", {
     },
 });
 exports.slots.belongsTo(doctors_1.doctors);
+exports.slots.belongsTo(hospital_1.hospital);

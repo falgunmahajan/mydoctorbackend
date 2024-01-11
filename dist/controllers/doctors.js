@@ -130,7 +130,7 @@ const getDoctorById = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 },
             ],
         });
-        res.status(201).json(resp);
+        res.status(200).json(resp);
     }
     catch (error) {
         res.status(500).json(error);

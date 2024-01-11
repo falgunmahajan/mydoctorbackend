@@ -121,7 +121,7 @@ export const getDoctorById = async (req: Request, res: Response) => {
         },
       ],
     });
-    res.status(201).json(resp);
+    res.status(200).json(resp);
   } catch (error) {
     res.status(500).json(error);
   }

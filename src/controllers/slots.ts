@@ -3,6 +3,7 @@ import { slots } from "../models/slots";
 import { doctors } from "../models/doctors";
 import { user } from "../models/users";
 import { Op } from "sequelize";
+import { hospital } from "../models/hospital";
 
 export const createSlots=async(req:Request,res:Response)=>{
     console.log(req.body)
@@ -33,14 +34,7 @@ if(date){
                 }
             },
             include:[{
-                model:doctors,
-                where:{
-                    Id:id,
-                   
-                },
-                include:[{
-                    model:user
-                }]
+                model:hospital
             }]
         })  
         console.log(resp)
@@ -60,14 +54,12 @@ if(startDate){
                   
                 }
             },
-            include:[{
-                model:doctors,
-                where:{
-                    Id:id,
-                   
-                },
+            include:[
+            
+            {
+                model:hospital,
                 include:[{
-                    model:user
+                    model:doctors
                 }]
             }]
         })  

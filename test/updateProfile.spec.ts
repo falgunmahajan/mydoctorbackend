@@ -234,6 +234,20 @@ describe("Update Profile Api Testing", () => {
         done();
       });
   });
+  it("destroys the doctor professional profile if profile is not sent", (done) => {
+  
+    stub1 = sinon.stub(hospitalDoctorMapping, "destroy").resolves();
+   
+    chai
+      .request(server)
+      .put("/updateProfile/doctor")
+      .send({profile:"[]"})
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body).to.deep.equal({ message: "Your data is updated" });
+        done();
+      });
+  });
   it("update the doctor professional profile", (done) => {
    
     stub1 = sinon.stub(hospitalDoctorMapping, "findOne").resolves(record)
@@ -280,7 +294,7 @@ describe("Update Profile Api Testing", () => {
           })
           .end((err, res) => {
             expect(res).to.have.status(201);
-            // expect(res.body).to.deep.equal({ message: "Your data is updated" });
+
             done();
           });
   });

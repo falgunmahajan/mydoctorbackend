@@ -8,7 +8,9 @@ interface appointmentAttributes {
     patientId:string;
     doctorId:string;
     slotsId:string;
-    appointmentStatus:string
+    appointmentStatus:string,
+    otherName:string,
+    otherMobileNumber:string
   }
   interface appointmentInstance extends Model<appointmentAttributes>, 
  appointmentAttributes {
@@ -46,5 +48,11 @@ export const appointment=sequelize.define<appointmentInstance>("appointments",{
       appointmentStatus:{
         type:DataTypes.ENUM("notStarted","ongoing","completed","cancelled"),
         defaultValue:"notStarted"
-      }
+      },
+      otherName: {
+        type: DataTypes.STRING,
+      },
+      otherMobileNumber: {
+        type: DataTypes.STRING,
+      },
 })

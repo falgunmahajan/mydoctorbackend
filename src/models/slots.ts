@@ -1,11 +1,13 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../database";
 import { doctors } from "./doctors";
+import { hospital } from "./hospital";
 interface slotsAttributes {
   Id: string;
   startTime:Date;
   endTime:Date;
   doctorId:string;
+  hospitalId:string;
   deleted:boolean;
   size:number;
   count:number
@@ -39,6 +41,14 @@ export const slots = sequelize.define<slotsInstance>("slot",{
     },
     allowNull:false
   },
+  hospitalId:{
+    type: DataTypes.UUID,
+    references:{
+        model:hospital,
+        key:"Id"
+    },
+    allowNull:false
+  },
   deleted: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
@@ -54,3 +64,4 @@ export const slots = sequelize.define<slotsInstance>("slot",{
 });
 
 slots.belongsTo(doctors)
+slots.belongsTo(hospital)
