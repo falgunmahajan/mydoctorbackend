@@ -12,6 +12,8 @@ import { authorization } from "../controllers/authorization";
 import { auth } from "../middlewares/auth";
 import { isUnique } from "../controllers/accounts";
 import { createSlots, deleteSlots, getSlots } from "../controllers/slots";
+import { payment } from "../controllers/payment";
+import { paymentAuth } from "../middlewares/paymentAuth";
 export const route=express.Router();
 
 
@@ -45,3 +47,4 @@ route.get("/specializations",getSpecialities)
  route.get("/hospitals",getHospitals)
 route.get("/doctors",getDoctors)
 route.get("/doctor/:Id",getDoctorById)
+route.post("/payment",paymentAuth,payment)
