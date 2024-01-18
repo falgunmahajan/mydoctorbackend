@@ -18,7 +18,7 @@ const authorization_1 = require("../controllers/authorization");
 const auth_1 = require("../middlewares/auth");
 const accounts_1 = require("../controllers/accounts");
 const slots_1 = require("../controllers/slots");
-const payment_1 = require("../controllers/payment");
+const appointment_1 = require("../controllers/appointment");
 const paymentAuth_1 = require("../middlewares/paymentAuth");
 exports.route = express_1.default.Router();
 exports.storage = multer_1.default.diskStorage({
@@ -48,4 +48,5 @@ exports.route.get("/specializations", specialities_1.getSpecialities);
 exports.route.get("/hospitals", hospital_1.getHospitals);
 exports.route.get("/doctors", doctors_1.getDoctors);
 exports.route.get("/doctor/:Id", doctors_1.getDoctorById);
-exports.route.post("/payment", paymentAuth_1.paymentAuth, payment_1.payment);
+exports.route.post("/payment", paymentAuth_1.paymentAuth, appointment_1.payment);
+exports.route.get("/appointments", appointment_1.getAppointment);

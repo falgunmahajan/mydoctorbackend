@@ -27,7 +27,7 @@ exports.appointment = database_1.sequelize.define("appointments", {
             key: "Id",
         },
     },
-    slotsId: {
+    slotId: {
         type: sequelize_1.DataTypes.UUID,
         references: {
             model: slots_1.slots,
@@ -45,3 +45,6 @@ exports.appointment = database_1.sequelize.define("appointments", {
         type: sequelize_1.DataTypes.STRING,
     },
 });
+exports.appointment.belongsTo(slots_1.slots);
+exports.appointment.belongsTo(doctors_1.doctors);
+exports.appointment.belongsTo(patient_1.patient);

@@ -7,7 +7,7 @@ interface appointmentAttributes {
     Id: string;
     patientId:string;
     doctorId:string;
-    slotsId:string;
+    slotId:string;
     appointmentStatus:string,
     otherName:string,
     otherMobileNumber:string
@@ -38,7 +38,7 @@ export const appointment=sequelize.define<appointmentInstance>("appointments",{
           key: "Id",
         },
       },
-     slotsId: {
+     slotId: {
         type: DataTypes.UUID,
         references: {
           model: slots,
@@ -56,3 +56,7 @@ export const appointment=sequelize.define<appointmentInstance>("appointments",{
         type: DataTypes.STRING,
       },
 })
+appointment.belongsTo(slots)
+appointment.belongsTo(doctors)
+appointment.belongsTo(patient)
+

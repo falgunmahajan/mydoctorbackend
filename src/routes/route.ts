@@ -12,7 +12,7 @@ import { authorization } from "../controllers/authorization";
 import { auth } from "../middlewares/auth";
 import { isUnique } from "../controllers/accounts";
 import { createSlots, deleteSlots, getSlots } from "../controllers/slots";
-import { payment } from "../controllers/payment";
+import { getAppointment, payment } from "../controllers/appointment";
 import { paymentAuth } from "../middlewares/paymentAuth";
 export const route=express.Router();
 
@@ -48,3 +48,4 @@ route.get("/specializations",getSpecialities)
 route.get("/doctors",getDoctors)
 route.get("/doctor/:Id",getDoctorById)
 route.post("/payment",paymentAuth,payment)
+route.get("/appointments",getAppointment)

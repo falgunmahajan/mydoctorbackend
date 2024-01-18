@@ -39,7 +39,13 @@ const paymentAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (error) {
-        res.status(401).json({ message: "Unauthorized User" });
+        res.status(403).json({
+            name: "Forbidden",
+            message: "Not allowed to create payments",
+            code: 403,
+            className: "forbidden",
+            errors: {}
+        });
     }
 });
 exports.paymentAuth = paymentAuth;
