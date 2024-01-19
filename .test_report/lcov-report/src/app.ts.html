@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60.41% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>29/48</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">58.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>46/46</span>
+                <span class='fraction'>27/46</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -144,33 +144,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -205,33 +205,33 @@ const app = express();
 &nbsp;
 const createModel = async () =&gt; {
   await sequelize.authenticate();
-  console.log("Database Successfully connected");
-  await user.sync();
-  console.log("User model is created");
+<span class="cstat-no" title="statement not covered" >  console.log("Database Successfully connected");</span>
+<span class="cstat-no" title="statement not covered" >  await user.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("User model is created");</span>
 &nbsp;
-  await hospital.sync();
-  console.log("Hospital model is created");
+<span class="cstat-no" title="statement not covered" >  await hospital.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Hospital model is created");</span>
 &nbsp;
-  await doctors.sync();
-  console.log("Doctor model is created");
+<span class="cstat-no" title="statement not covered" >  await doctors.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Doctor model is created");</span>
 &nbsp;
-  await patient.sync();
-  console.log("Patient model is created");
+<span class="cstat-no" title="statement not covered" >  await patient.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Patient model is created");</span>
 &nbsp;
-  await hospitalDoctorMapping.sync();
-  console.log("HospitalDoctor model is created");
+<span class="cstat-no" title="statement not covered" >  await hospitalDoctorMapping.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("HospitalDoctor model is created");</span>
 &nbsp;
-  await slots.sync();
-  console.log("Slot model is created");
+<span class="cstat-no" title="statement not covered" >  await slots.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Slot model is created");</span>
 &nbsp;
-  await speciality.sync();
-  console.log("Speciality model is created");
+<span class="cstat-no" title="statement not covered" >  await speciality.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Speciality model is created");</span>
 &nbsp;
-  await appointment.sync();
-  console.log("Appointment model is created");
+<span class="cstat-no" title="statement not covered" >  await appointment.sync();</span>
+<span class="cstat-no" title="statement not covered" >  console.log("Appointment model is created");</span>
 &nbsp;
-  await doctorSpecialityMapping.sync()
-  console.log("DoctorSpeciality model is created")
+<span class="cstat-no" title="statement not covered" >  await doctorSpecialityMapping.sync()</span>
+<span class="cstat-no" title="statement not covered" >  console.log("DoctorSpeciality model is created")</span>
 };
 createModel();
 app.use(cors());
@@ -253,7 +253,7 @@ export { app, server,
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-11T10:34:57.864Z
+                at 2024-01-19T12:44:46.651Z
             </div>
         <script src="../prettify.js"></script>
         <script>

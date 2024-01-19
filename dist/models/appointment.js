@@ -35,8 +35,8 @@ exports.appointment = database_1.sequelize.define("appointments", {
         },
     },
     appointmentStatus: {
-        type: sequelize_1.DataTypes.ENUM("notStarted", "ongoing", "completed", "cancelled"),
-        defaultValue: "notStarted"
+        type: sequelize_1.DataTypes.ENUM("Not Started", "Ongoing", "Completed", "Cancelled"),
+        defaultValue: "Not Started"
     },
     otherName: {
         type: sequelize_1.DataTypes.STRING,

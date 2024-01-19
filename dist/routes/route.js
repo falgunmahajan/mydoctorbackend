@@ -50,3 +50,4 @@ exports.route.get("/doctors", doctors_1.getDoctors);
 exports.route.get("/doctor/:Id", doctors_1.getDoctorById);
 exports.route.post("/payment", paymentAuth_1.paymentAuth, appointment_1.payment);
 exports.route.get("/appointments", appointment_1.getAppointment);
+exports.route.delete("/appointments", appointment_1.deleteAppointment);

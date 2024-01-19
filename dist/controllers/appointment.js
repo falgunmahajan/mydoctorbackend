@@ -8,17 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAppointment = exports.payment = void 0;
+exports.deleteAppointment = exports.getAppointment = exports.payment = void 0;
 const getExpiry_1 = require("../utils/getExpiry");
 const appointment_1 = require("../models/appointment");
 const patient_1 = require("../models/patient");
 const slots_1 = require("../models/slots");
 const users_1 = require("../models/users");
+const doctors_1 = require("../models/doctors");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const Stripe = require("stripe");
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+console.log(process.env.STRIPE_SECRET_KEY);
 const payment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
-    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
     const userData = res.locals.user;
     try {
         const expiry = (0, getExpiry_1.getExpiry)(req.body.expiryDate);
@@ -42,8 +49,24 @@ const payment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             },
         });
         req.body.patientId = userData.Id;
+        const slotData = yield slots_1.slots.findOne({
+            where: {
+                Id: req.body.slotId,
+            },
+        });
+        console.log(slotData);
+        if (slotData) {
+            let count = slotData.count + 1;
+            yield slots_1.slots.update({
+                count: count,
+            }, {
+                where: {
+                    Id: req.body.slotId,
+                },
+            });
+        }
         const resp = yield appointment_1.appointment.create(req.body);
-        res.json({
+        res.status(201).json({
             appointmentId: resp.Id,
             status: "appointment booked sucessfully",
             payment: "payment sucessfull",
@@ -81,6 +104,19 @@ const getAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 where: {
                     patientId: patientId,
                 },
+                include: [
+                    {
+                        model: doctors_1.doctors,
+                        include: [
+                            {
+                                model: users_1.user,
+                            },
+                        ],
+                    },
+                    {
+                        model: slots_1.slots,
+                    },
+                ],
             });
         }
         if (doctorId) {
@@ -91,9 +127,11 @@ const getAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 include: [
                     {
                         model: patient_1.patient,
-                        include: [{
-                                model: users_1.user
-                            }]
+                        include: [
+                            {
+                                model: users_1.user,
+                            },
+                        ],
                     },
                     {
                         model: slots_1.slots,
@@ -109,3 +147,13 @@ const getAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getAppointment = getAppointment;
+const deleteAppointment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const appointmentId = req.query.appointmentId;
+    const resp = yield appointment_1.appointment.destroy({
+        where: {
+            Id: appointmentId,
+        },
+    });
+    res.status(200).json({ message: "Appointment Deleted successfully" });
+});
+exports.deleteAppointment = deleteAppointment;
